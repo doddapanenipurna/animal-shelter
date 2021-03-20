@@ -1,0 +1,104 @@
+.Modal{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-left: 18%;
+    margin-right: 18%;
+    margin-top: 2%;
+    height:95%;
+    border: grey;
+}
+
+.header{
+    text-align: center;
+    font-size : 14px;
+}
+
+h2{
+    text-align:left;
+}
+
+.headerContainer{
+    background-color:rgb(244, 228, 148);
+    font-size: 18px;
+}
+
+
+.buttonsHeader{ 
+    display:flex;
+    justify-content: start;
+    flex-direction:row;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top: 3%;
+}
+
+.closeButton{
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.submitButton{
+  background-color:lightgreen;
+  padding: 10px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.submitButtonWrapper{
+  display:flex;
+  justify-content: flex-end;
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    margin-left:2%;
+    margin-right:2%;
+    overflow-y: auto
+}
+
+.wrapper {
+  border-radius: 1%;
+}
+
+.form-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2%;
+}
+
+.form-row > label {
+  flex: 1;
+}
+
+.form-row > input,textarea {
+  flex: 2;
+}
+
+textarea{
+  padding-bottom: 20%;
+}
+
+.form-row > input,
+.form-row > .button {
+  padding: 1%;
+}
+
+.form-row > .button {
+  background: gray;
+  color: white;
+  border: 0;
+}
+
+.generateId{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.generateIdButton{
+  background-color:lightblue;
+  padding: 10px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -3,9 +3,9 @@ import EmployeeHomePage from './Components/EmployeeHomePage';
 
 function App() {
   return (
-    <div className="App">
-      <EmployeeHomePage/>
-    </div>
+      <div className="App">
+        <EmployeeHomePage />
+      </div>
   );
 }
 

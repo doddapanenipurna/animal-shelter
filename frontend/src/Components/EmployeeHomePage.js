@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import NewAnimalModal from './NewAnimalModal'
+import AnimalModal from './AnimalModal'
+import './EmployeeHomePage.css'
 
 const EmployeeHomePage = () => {
 
@@ -14,13 +15,13 @@ const EmployeeHomePage = () => {
     }
 
     return (
-        <div>
+        <div className="EmployeeHomePage">
             <button onClick={setShowModalTrue}>
                 Add New Animal
             </button>
             {
                 showModal ? (
-                    <NewAnimalModal showModal={showModal} closeModal={setShowModalFalse} appElement={document.getElementById('app')} />
+                    <AnimalModal showModal={showModal} closeModal={setShowModalFalse} appElement={document.getElementById('app')} />
                 ) : (
                         <>
                         </>

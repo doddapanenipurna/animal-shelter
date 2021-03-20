@@ -1,7 +1,11 @@
 from django.urls import path
-from . import views
+from animals.views import (
+    AddAnimal, Index, GenerateAnimalId, AllAnimals
+)
 
 urlpatterns = [
-    path('',views.index, name ='index'),
-    path('add/',views.add, name = 'add'),
+    path('',Index.as_view()),
+    path('add/',AddAnimal.as_view()),
+    path('generateid/', GenerateAnimalId.as_view()),
+    path('all_animals/', AllAnimals.as_view()),
 ]
