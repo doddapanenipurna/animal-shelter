@@ -7,11 +7,17 @@
 
 .columnWrapper{
     display:flex;
+    text-align: center;
     flex-direction: column;
     padding:1%;
     flex:1;
 }
 
+.columnHeader{
+    display:flex;
+    justify-content: center;
+    background-color: rgb(200,200,200);
+}
 .chart{
     display:flex;
 }
