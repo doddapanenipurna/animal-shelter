@@ -37,3 +37,6 @@ class Animal(models.Model):
     neutered_or_spayed = models.BooleanField(
         default = False
     )
+    current_status = models.CharField(
+        max_length=255, blank=False, default='intake',
+    )

@@ -1,10 +1,10 @@
 import React from 'react';
 import './AnimalNode.css'
-const AnimalNode = () => {
+const AnimalNode = ({animal}) => {
 
     return(
         <div className='node'>
-            <p>Test</p>
+            <p>{animal.fields['name']}</p>
         </div>
     )
 }

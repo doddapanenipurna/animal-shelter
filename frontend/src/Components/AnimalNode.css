@@ -1,5 +1,6 @@
 .node{
     display:flex;
+    flex:1;
     align-items: center;
     justify-content: center;
     background-color:rgb(244, 228, 148);

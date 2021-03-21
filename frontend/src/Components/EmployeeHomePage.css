@@ -1,11 +1,13 @@
 .EmployeeHomePage {
     display: flex;
+    flex-direction: column;
+    height: 99%;
+    width:99%;
+    background-color: lightblue;
 }
 
-.contentWrapper{
-    display: flex;
-}
 
-.dragColumn{
-    background-color: lightslategrey;
+.newButton{
+    display:flex;
+    padding: 1000;
 }

@@ -1,0 +1,17 @@
+
+.droppableColumn{
+    display: flex;
+    flex-direction: column;
+    background: lightgray;
+}
+
+.columnWrapper{
+    display:flex;
+    flex-direction: column;
+    padding:1%;
+    flex:1;
+}
+
+.chart{
+    display:flex;
+}
