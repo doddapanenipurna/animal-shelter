@@ -1,0 +1,9 @@
+.node{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color:rgb(244, 228, 148);
+    border-style:solid;
+    border-width: 0.5;
+    border-color: gray;
+}

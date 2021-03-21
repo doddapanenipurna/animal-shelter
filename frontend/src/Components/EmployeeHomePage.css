@@ -1,4 +1,11 @@
 .EmployeeHomePage {
     display: flex;
-    background-color: blue;   
+}
+
+.contentWrapper{
+    display: flex;
+}
+
+.dragColumn{
+    background-color: lightslategrey;
 }

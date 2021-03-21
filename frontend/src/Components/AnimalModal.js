@@ -10,7 +10,7 @@ const AnimalModal = ({ showModal, closeModal }) => {
     // see https://github.com/reactjs/react-modal/issues/133
     Modal.setAppElement('body');
 
-    const [formState, setFormState] = React.useState({
+    const [formState, setFormState] = useState({
         intakeDate: "",
         intakeType: "",
         intakeEmployee: "",
@@ -28,14 +28,13 @@ const AnimalModal = ({ showModal, closeModal }) => {
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/animals/generateid/')
             .then((response) => {
-                console.log(response)
                 setFormState({
                     ...formState,
                     animalId: response.data
                 })
             })
             .catch((error) => {
-                console.log(error)
+                console.error(error)
             })
     }, [])
 

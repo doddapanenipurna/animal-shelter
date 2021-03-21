@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from .models import Animal
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
+from django.core import serializers
 import json
 import string
 import random
@@ -61,5 +62,6 @@ class AllAnimals(APIView):
 
     permission_classes = ()
     def get(self,request):
-        animals = Animal.objects.values_list('shelter_id', flat=True)
-        return HttpResponse(animals)
+        data = serializers.serialize('json',Animal.objects.all(),fields=('shelter_id','name'))
+        print(data)
+        return HttpResponse(data)
