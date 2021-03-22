@@ -102,3 +102,17 @@ textarea{
   border-radius: 5px;
   cursor: pointer;
 }
+
+.bottomButtons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.deleteButton{
+  background-color:indianred;
+  padding: 10px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}

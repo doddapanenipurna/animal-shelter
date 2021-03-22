@@ -21,22 +21,27 @@ class AddAnimal(APIView):
     permission_classes = ()
 
     def post(self, request):
-        data = json.loads(request.body)['formState']
-        print(data)
-        new_animal = Animal(
-            intake_date=data['intakeDate'],
-            intake_type=data['intakeType'],
-            intake_employee=data['intakeEmployee'],
-            name=data['animalName'],
-            breed=data['animalBreed'],
-            gender=data['animalGender'],
-            age=data['animalAge'],
-            shelter_id=data['animalId'],
-            neutered_or_spayed=False,
-            medical_notes=data['medicalNotes'],
-            other_notes=data['otherNotes'],
-        )
-        new_animal.save()
+        try:
+            data = json.loads(request.body)['formState']
+            print(data)
+            new_animal = Animal(
+                intake_date=data['intakeDate'],
+                intake_type=data['intakeType'],
+                intake_employee=data['intakeEmployee'],
+                name=data['animalName'],
+                breed=data['animalBreed'],
+                gender=data['animalGender'],
+                age=data['animalAge'],
+                shelter_id=data['animalId'],
+                neutered_or_spayed=False,
+                medical_notes=data['medicalNotes'],
+                other_notes=data['otherNotes'],
+                weight = data['animalWeight'],
+            )
+            new_animal.save()
+        except:
+            return HttpResponse('Error Creating Animal  ')
+
         return HttpResponse("Animal Added")
 
 class GetAnimal(APIView):
@@ -94,21 +99,23 @@ class UpdateAnimal(APIView):
     permission_classes = ()
 
     def post(self, request, shelter_id):
-        print("THIS IS THE ONE YOU WANT")
-        data = json.loads(request.body)['formState']
-        print(data)
-        animal = Animal.objects.get(shelter_id=shelter_id)
-        animal.intake_date=data['intakeDate']
-        animal.intake_type=data['intakeType']
-        animal.intake_employee=data['intakeEmployee']
-        animal.name=data['animalName']
-        animal.breed=data['animalBreed']
-        animal.gender=data['animalGender']
-        animal.age=data['animalAge']
-        animal.shelter_id=data['animalId']
-        animal.neutered_or_spayed=False
-        animal.medical_notes=data['medicalNotes']
-        animal.other_notes=data['otherNotes']
-        animal.weight = data['animalWeight']
-        animal.save()
+        try:
+            data = json.loads(request.body)['formState']
+            animal = Animal.objects.get(shelter_id=shelter_id)
+            animal.intake_date=data['intakeDate']
+            animal.intake_type=data['intakeType']
+            animal.intake_employee=data['intakeEmployee']
+            animal.name=data['animalName']
+            animal.breed=data['animalBreed']
+            animal.gender=data['animalGender']
+            animal.age=data['animalAge']
+            animal.shelter_id=data['animalId']
+            animal.neutered_or_spayed=False
+            animal.medical_notes=data['medicalNotes']
+            animal.other_notes=data['otherNotes']
+            animal.weight = data['animalWeight']
+            animal.save()
+        except:
+            print("Error Updating")
+            return HttpResponse("error")
         return HttpResponse("Done")

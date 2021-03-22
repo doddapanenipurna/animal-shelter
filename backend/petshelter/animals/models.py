@@ -23,7 +23,7 @@ class Animal(models.Model):
     age = models.CharField(max_length=255,default=None, blank=True, null=True)
     location = models.CharField(
         max_length=255, default="Shelter", blank=True, null=True)
-    weight = models.IntegerField(default=None, blank=True, null=True)
+    weight = models.CharField(max_length=255, default=None,blank=True, null=True)
     color = models.CharField(
         max_length=255, default=None, blank=True, null=True)
     medical_notes = models.TextField(default=None, blank=True, null=True)

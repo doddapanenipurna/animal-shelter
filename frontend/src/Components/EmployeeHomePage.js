@@ -6,10 +6,9 @@ import AdoptionProcessChart from './AdoptionProcessChart'
 const EmployeeHomePage = () => {
 
     const [showModal, setShowModal] = useState(false);
-    const [currAnimalId, setCurrAnimalId] = useState('')
+    const [currAnimalId, setCurrAnimalId] = useState("")
 
     const setShowModalTrue = () => {
-        console.log("HOWDYYYYY")
         setShowModal(true)
     }
 

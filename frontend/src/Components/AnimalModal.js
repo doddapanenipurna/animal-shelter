@@ -12,14 +12,14 @@ const AnimalModal = ({ showModal, closeModal, animalId }) => {
     Modal.setAppElement('body');
 
     const [formState, setFormState] = useState({
-        intakeDate: "",
+        intakeDate: moment().format("YYYY-MM-DDTkk:mm"),
         intakeType: "",
         intakeEmployee: "",
         animalName: "",
         animalBreed: "",
         animalGender: "",
-        animalAge: 0,
-        animalWeight: 0,
+        animalAge: "",
+        animalWeight: "",
         animalId: "",
         animalNeuSpay: "",
         medicalNotes: "",
@@ -42,6 +42,7 @@ const AnimalModal = ({ showModal, closeModal, animalId }) => {
             axios.get('http://127.0.0.1:8000/animals/animal/' + animalId)
                 .then((response) => {
                     var data = response.data[0].fields
+                    console.log(data)
                     setFormState({
                         ...formState,
                         intakeDate: moment(data['intake_date']).format("YYYY-MM-DDTkk:mm"),
@@ -51,7 +52,7 @@ const AnimalModal = ({ showModal, closeModal, animalId }) => {
                         animalBreed: data['breed'],
                         animalGender: data['gender'],
                         animalAge: data['age'],
-                        animalWeight: data['weight'],
+                        animalWeight: data['weight'] || 0,
                         animalId: animalId,
                         animalNeuSpay: data['neutered_or_spayed'],
                         medicalNotes: data['medical_notes'],
@@ -68,10 +69,10 @@ const AnimalModal = ({ showModal, closeModal, animalId }) => {
                     console.error(error)
                 })
         } else {
-            axios.post(`http://127.0.0.1:8000/animals/update_all/`+animalId+'/', { formState })
-            .catch((error) => {
-                console.error(error)
-            })
+            axios.post(`http://127.0.0.1:8000/animals/update_all/` + animalId + '/', { formState })
+                .catch((error) => {
+                    console.error(error)
+                })
         }
     }
 
@@ -206,8 +207,13 @@ const AnimalModal = ({ showModal, closeModal, animalId }) => {
                             <textarea name="otherNotes" form="animalForm" value={formState.otherNotes} onChange={handleChange}></textarea>
                         </li>
                     </ul>
-                    <div className="submitButtonWrapper">
-                        <button type="submit" className="submitButton" form="animalForm">Submit</button>
+                    <div className="bottomButtons">
+                        <div className="submitButtonWrapper">
+                            <button type="submit" className="deleteButton" form="animalForm">Delete</button>
+                        </div>
+                        <div className="submitButtonWrapper">
+                            <button type="submit" className="submitButton" form="animalForm">Submit</button>
+                        </div>
                     </div>
                 </form>
             </div>
