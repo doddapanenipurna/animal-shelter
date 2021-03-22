@@ -6,8 +6,10 @@ import AdoptionProcessChart from './AdoptionProcessChart'
 const EmployeeHomePage = () => {
 
     const [showModal, setShowModal] = useState(false);
+    const [currAnimalId, setCurrAnimalId] = useState('')
 
     const setShowModalTrue = () => {
+        console.log("HOWDYYYYY")
         setShowModal(true)
     }
 
@@ -17,15 +19,18 @@ const EmployeeHomePage = () => {
 
     return (
         <div className="EmployeeHomePage">
-            <button onClick={setShowModalTrue} className='newButton'>
+            <button onClick={()=> {
+                setCurrAnimalId('')
+                setShowModalTrue()
+            }} className='newButton'>
                 Add New Animal
             </button>
             <div>
-                <AdoptionProcessChart></AdoptionProcessChart>
+                <AdoptionProcessChart setShowModal={setShowModal} setCurrAnimalId={setCurrAnimalId}></AdoptionProcessChart>
             </div>
             {
                 showModal ? (
-                    <AnimalModal showModal={showModal} closeModal={setShowModalFalse} appElement={document.getElementById('app')} />
+                    <AnimalModal showModal={showModal} closeModal={setShowModalFalse} appElement={document.getElementById('app')} animalId={currAnimalId} />
                 ) : (
                         <>
                         </>

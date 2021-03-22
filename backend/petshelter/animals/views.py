@@ -30,7 +30,7 @@ class AddAnimal(APIView):
             name=data['animalName'],
             breed=data['animalBreed'],
             gender=data['animalGender'],
-            age_years=data['animalAge'],
+            age=data['animalAge'],
             shelter_id=data['animalId'],
             neutered_or_spayed=False,
             medical_notes=data['medicalNotes'],
@@ -39,6 +39,13 @@ class AddAnimal(APIView):
         new_animal.save()
         return HttpResponse("Animal Added")
 
+class GetAnimal(APIView):
+    permission_classes = ()
+    def get(self,request,shelter_id):
+        animal = Animal.objects.all().filter(shelter_id=shelter_id)
+        serialized_animal = serializers.serialize('json', animal)
+
+        return HttpResponse(serialized_animal)
 
 class GenerateAnimalId(APIView):
 
@@ -72,7 +79,7 @@ class AllAnimals(APIView):
         data = serializers.serialize('json',Animal.objects.all().filter(current_status=category),fields=('shelter_id','name'))
         return HttpResponse(data)
 
-class UpdateAnimal(APIView):
+class UpdateAnimalState(APIView):
 
     permission_classes = ()
 
@@ -80,5 +87,28 @@ class UpdateAnimal(APIView):
         animal = Animal.objects.get(shelter_id=shelter_id)
         print(request.data['destinationCategory'])
         animal.current_status = request.data['destinationCategory']
+        animal.save()
+        return HttpResponse("Done")
+
+class UpdateAnimal(APIView):
+    permission_classes = ()
+
+    def post(self, request, shelter_id):
+        print("THIS IS THE ONE YOU WANT")
+        data = json.loads(request.body)['formState']
+        print(data)
+        animal = Animal.objects.get(shelter_id=shelter_id)
+        animal.intake_date=data['intakeDate']
+        animal.intake_type=data['intakeType']
+        animal.intake_employee=data['intakeEmployee']
+        animal.name=data['animalName']
+        animal.breed=data['animalBreed']
+        animal.gender=data['animalGender']
+        animal.age=data['animalAge']
+        animal.shelter_id=data['animalId']
+        animal.neutered_or_spayed=False
+        animal.medical_notes=data['medicalNotes']
+        animal.other_notes=data['otherNotes']
+        animal.weight = data['animalWeight']
         animal.save()
         return HttpResponse("Done")

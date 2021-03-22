@@ -1,10 +1,22 @@
 import React from 'react';
 import './AnimalNode.css'
-const AnimalNode = ({animal}) => {
+const AnimalNode = ({ animal, setShowModalTrue, animalId}) => {
 
-    return(
+    const handleClick = () =>{
+        console.log("test", animal.fields['shelter_id'])
+        animalId(animal.fields['shelter_id'])
+        setShowModalTrue(true)
+    }
+    return (
         <div className='node'>
-            <p>{animal.fields['name']}</p>
+            <div className="name">
+                <p>{animal.fields['name']}</p>
+            </div>
+            <div>
+            <button onClick={handleClick}>
+                Edit
+            </button>
+            </div>
         </div>
     )
 }

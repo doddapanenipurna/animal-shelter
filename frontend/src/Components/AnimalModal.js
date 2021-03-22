@@ -3,8 +3,9 @@ import Modal from 'react-modal';
 import './AnimalModal.css';
 import ColoredLine from './ColoredLine';
 import axios from 'axios';
+import moment from 'moment'
 
-const AnimalModal = ({ showModal, closeModal }) => {
+const AnimalModal = ({ showModal, closeModal, animalId }) => {
 
     //Due to the render order in the Document, we need to attach this element to the HTML body
     // see https://github.com/reactjs/react-modal/issues/133
@@ -19,31 +20,59 @@ const AnimalModal = ({ showModal, closeModal }) => {
         animalGender: "",
         animalAge: 0,
         animalWeight: 0,
-        animalId: 0,
+        animalId: "",
         animalNeuSpay: "",
-        medicalNotes:"",
-        otherNotes:"",
+        medicalNotes: "",
+        otherNotes: "",
     })
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/animals/generateid/')
-            .then((response) => {
-                setFormState({
-                    ...formState,
-                    animalId: response.data
+        if (!animalId) {
+            axios.get('http://127.0.0.1:8000/animals/generateid/')
+                .then((response) => {
+                    setFormState({
+                        ...formState,
+                        animalId: response.data
+                    })
                 })
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+                .catch((error) => {
+                    console.error(error)
+                })
+        } else {
+            axios.get('http://127.0.0.1:8000/animals/animal/' + animalId)
+                .then((response) => {
+                    var data = response.data[0].fields
+                    setFormState({
+                        ...formState,
+                        intakeDate: moment(data['intake_date']).format("YYYY-MM-DDTkk:mm"),
+                        intakeType: data['intake_type'],
+                        intakeEmployee: data['intake_employee'],
+                        animalName: data['name'],
+                        animalBreed: data['breed'],
+                        animalGender: data['gender'],
+                        animalAge: data['age'],
+                        animalWeight: data['weight'],
+                        animalId: animalId,
+                        animalNeuSpay: data['neutered_or_spayed'],
+                        medicalNotes: data['medical_notes'],
+                        otherNotes: data['other_notes'],
+                    })
+                })
+        }
     }, [])
 
     function post() {
-        axios.post(`http://127.0.0.1:8000/animals/add/`, { formState })
+        if (!animalId) {
+            axios.post(`http://127.0.0.1:8000/animals/add/`, { formState })
+                .catch((error) => {
+                    console.error(error)
+                })
+        } else {
+            axios.post(`http://127.0.0.1:8000/animals/update_all/`+animalId+'/', { formState })
             .catch((error) => {
-                console.log(error)
-                //display error
+                console.error(error)
             })
+        }
     }
 
     function handleChange(e) {

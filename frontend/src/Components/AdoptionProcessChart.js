@@ -5,9 +5,9 @@ import './AdoptionProcessChart.css';
 import axios from 'axios';
 
 
-const AdoptionProcessChart = () => {
+const AdoptionProcessChart = ({setShowModal,setCurrAnimalId}) => {
 
-    var dict = new Object();
+    var dict = Object();
 
     const [intake, setIntake] = useState([]);
     const [medical, setMedical] = useState([])
@@ -92,7 +92,7 @@ const AdoptionProcessChart = () => {
                                     <Draggable key={item.fields['shelter_id']} draggableId={item.fields['shelter_id']} index={index}>
                                         {(provided, snapshot) => (
                                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                <AnimalNode animal={item}></AnimalNode>
+                                                <AnimalNode animal={item} setShowModalTrue={setShowModal} animalId={setCurrAnimalId}></AnimalNode>
                                             </div>
                                         )
                                         }
@@ -112,7 +112,7 @@ const AdoptionProcessChart = () => {
                                     <Draggable key={item.fields['shelter_id']} draggableId={item.fields['shelter_id']} index={index}>
                                         {(provided, snapshot) => (
                                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                <AnimalNode animal={item}></AnimalNode>
+                                                <AnimalNode animal={item} setShowModalTrue={setShowModal} animalId={setCurrAnimalId}></AnimalNode>
                                             </div>
                                         )
                                         }
@@ -132,7 +132,7 @@ const AdoptionProcessChart = () => {
                                     <Draggable key={item.fields['shelter_id']} draggableId={item.fields['shelter_id']} index={index}>
                                         {(provided, snapshot) => (
                                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                <AnimalNode animal={item}></AnimalNode>
+                                                <AnimalNode animal={item} setShowModalTrue={setShowModal} animalId={setCurrAnimalId}></AnimalNode>
                                             </div>
                                         )
                                         }
@@ -152,7 +152,7 @@ const AdoptionProcessChart = () => {
                                     <Draggable key={item.fields['shelter_id']} draggableId={item.fields['shelter_id']} index={index}>
                                         {(provided, snapshot) => (
                                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                <AnimalNode animal={item}></AnimalNode>
+                                                <AnimalNode animal={item} setShowModalTrue={setShowModal} animalId={setCurrAnimalId}></AnimalNode>
                                             </div>
                                         )
                                         }

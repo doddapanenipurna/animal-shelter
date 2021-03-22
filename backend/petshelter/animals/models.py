@@ -9,7 +9,7 @@ class Animal(models.Model):
     # at time of creation.
     shelter_id = models.CharField(
         max_length=255, default=None, blank=True, null=True, unique=True)
-    intake_date = models.DateTimeField(auto_now_add=True)
+    intake_date = models.DateTimeField(auto_now_add=False)
     intake_type = models.CharField(
         max_length=255, default=None, blank=True, null=True)
     intake_employee = models.CharField(
@@ -20,13 +20,9 @@ class Animal(models.Model):
         max_length=255, default=None, blank=True, null=True)
     gender = models.CharField(
         max_length=255, default=None, blank=True, null=True)
-    age_years = models.IntegerField(default=None, blank=True, null=True)
-    age_months = models.IntegerField(default=None, blank=True, null=True)
-    age_weeks = models.IntegerField(default=None, blank=True, null=True)
-    age_days = models.IntegerField(default=None, blank=True, null=True)
+    age = models.CharField(max_length=255,default=None, blank=True, null=True)
     location = models.CharField(
         max_length=255, default="Shelter", blank=True, null=True)
-    fee = models.IntegerField(blank=True, null=True)
     weight = models.IntegerField(default=None, blank=True, null=True)
     color = models.CharField(
         max_length=255, default=None, blank=True, null=True)
