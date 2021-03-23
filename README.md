@@ -17,8 +17,7 @@ python3 manage.py runserver
 - http://127.0.0.1:8000/
 
 ## 2. Start Frontend
-- In a new terminal tab, navigate to to frontend
-Using CLI, navigate to the **frontend/** folder.
+- In a new terminal tab,navigate to the **frontend/** folder.
 - Install dependencies
 ```
 yarn
