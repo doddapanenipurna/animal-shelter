@@ -5,7 +5,7 @@ import './AdoptionProcessChart.css';
 import axios from 'axios';
 
 
-const AdoptionProcessChart = ({setShowModal,setCurrAnimalId}) => {
+const AdoptionProcessChart = ({ setShowModal, setCurrAnimalId }) => {
 
     var dict = Object();
 
@@ -47,15 +47,15 @@ const AdoptionProcessChart = ({setShowModal,setCurrAnimalId}) => {
     }
 
     useEffect(() => {
-        const categories = ['intake','medical', 'listings', 'other']
-        categories.forEach( input => {
-            axios.post('http://127.0.0.1:8000/animals/all_animals/', {input})
-            .then((response) => {
-                dict[input][1](response.data)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+        const categories = ['intake', 'medical', 'listings', 'other']
+        categories.forEach(input => {
+            axios.post('http://127.0.0.1:8000/animals/all_animals/', { input })
+                .then((response) => {
+                    dict[input][1](response.data)
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
         })
     }, [])
 
@@ -76,6 +76,8 @@ const AdoptionProcessChart = ({setShowModal,setCurrAnimalId}) => {
         destClone.splice(droppableDestination, 0, removed)
 
         axios.post('http://127.0.0.1:8000/animals/update/' + removed.fields['shelter_id'] + '/', { 'sourceCategory': sourceCategory, 'destinationCategory': destCategory })
+            .then((response) => {
+            })
         source[1](sourceClone)
         destination[1](destClone)
     }

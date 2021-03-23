@@ -40,7 +40,8 @@ h2{
 }
 .submitButton{
   background-color:lightgreen;
-  padding: 10px 40px;
+  width: 150px; 
+  padding: 10px;  
   border-radius: 5px;
   cursor: pointer;
 }
@@ -110,9 +111,10 @@ textarea{
   justify-content: space-around;
 }
 
-.deleteButton{
-  background-color:indianred;
-  padding: 10px 40px;
+.paperButton{
+  background-color:lightblue;
+  width: 150px; 
+  padding: 10px;  
   border-radius: 5px;
   cursor: pointer;
 }

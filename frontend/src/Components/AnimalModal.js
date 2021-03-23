@@ -76,6 +76,20 @@ const AnimalModal = ({ showModal, closeModal, animalId }) => {
         }
     }
 
+    function paperwork() {
+        axios.get(`http://127.0.0.1:8000/animals/createpaperwork/`+animalId+'/', { formState })
+            .then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', formState.animalName+'_'+formState.animalId+'.pdf');
+                document.body.appendChild(link);
+                link.click();
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
     function handleChange(e) {
         const value = e.target.value
         setFormState({
@@ -209,7 +223,7 @@ const AnimalModal = ({ showModal, closeModal, animalId }) => {
                     </ul>
                     <div className="bottomButtons">
                         <div className="submitButtonWrapper">
-                            <button type="submit" className="deleteButton" form="animalForm">Delete</button>
+                            <button type="submit" className="paperButton" onClick={paperwork} >Paperwork</button>
                         </div>
                         <div className="submitButtonWrapper">
                             <button type="submit" className="submitButton" form="animalForm">Submit</button>
