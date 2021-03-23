@@ -1,7 +1,9 @@
-# animal-shelter
+# animal-shelter for Revved
 Sample takehome for Revved
 Steps to run this project:
 
+# Setup
+This project consists of the frontend and supporting backend. You need to have the ```yarn``` [package installed](https://yarnpkg.com/getting-started/install) to run the code. **Important: Run each in their own seperate terminal window!**
 ## 1. Start Backend
 
 Run the following commands on your CLI to start server.
